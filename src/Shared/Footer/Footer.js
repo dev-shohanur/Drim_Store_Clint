@@ -10,7 +10,7 @@ const Footer = () => {
                     <Link to='/' className="text-3xl">Drim Store</Link>
                     <p className="text-xl font-semibold flex items-center">
                         <FaLocationArrow  className='mr-2'/>
-                         Bagatipara, Natore , Bangladesh
+                         Natore , Bangladesh
                     </p>
                     <p className="text-xl font-semibold flex items-center">
                         <FaEnvelope className='mr-2' />
@@ -53,6 +53,7 @@ const Footer = () => {
                     <img className='w-full' src="https://web.programming-hero.com/static/media/ssl-commerce.1d268dce.png" alt="" />
                 </div>
             </div>
+
             <div className='text-center mt-32 text-xl'>
                 <p>Copyright © 2022 - All right reserved by Drim Store</p>
             </div>
