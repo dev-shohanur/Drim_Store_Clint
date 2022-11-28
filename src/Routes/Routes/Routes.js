@@ -20,7 +20,7 @@ import PrivetRoute from "../PrivetRoute/PrivetRoute";
 import SellerRoute from "../SellerRoute/SellerRoute";
 
 const router = createBrowserRouter([
-    
+
     {
         path: '/',
         element: <Main></Main>,

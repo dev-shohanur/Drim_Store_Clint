@@ -17,7 +17,9 @@ const DashboardLayOut = () => {
             <div className="drawer drawer-mobile">
                 <input id="dashboard-drawer" type="checkbox" className="drawer-toggle" />
                 <div className="drawer-content">
+
                     <Outlet></Outlet>
+                    
                 </div>
                 <div className="drawer-side shadow-lg">
                     <label htmlFor="dashboard-drawer" className="drawer-overlay"></label>
