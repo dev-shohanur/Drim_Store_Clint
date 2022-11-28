@@ -1,3 +1,4 @@
+import { useQuery } from '@tanstack/react-query';
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
@@ -12,10 +13,22 @@ const SignUp = () => {
     const [loginError, setLoginError] = useState('')
     const [createdUserEmail, setCreatedUserEmail] = useState('')
     const [token] = useToken(createdUserEmail)
+    const [userEmail, setUserEmail] = useState('')
 
     // if (token) {
     //     navigate('/')
     // }
+
+    const { data: buyer = {}, refetch } = useQuery({
+
+        queryKey: ['user', 'email'],
+        queryFn: async () => {
+
+            const res = await fetch(`https://drim-store-server-dvsrshohan.vercel.app/user?email=${userEmail}`);
+            const data = await res.json();
+            return data;
+        }
+    })
 
     console.log('aaa', loginError);
     const handleSignUp = data => {
@@ -43,7 +56,12 @@ const SignUp = () => {
             .then(res => res)
             .then(data => {
                 const user = data.user;
-                saveUser(user.displayName, user.email,'Buyer')
+                setUserEmail(user.email)
+                if (buyer === {}) {
+                    saveUser(user.displayName, user.email, 'Buyer')
+                }
+                toast.success('Sign Up Successfully')
+                navigate('/');
         })
     }
     const saveUser = (name, email,role) => {

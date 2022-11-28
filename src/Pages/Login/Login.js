@@ -42,7 +42,7 @@ const Login = () => {
             })
     }
 
-    const { data: user = {}, refetch } = useQuery({
+    const { data: buyer = {}, refetch } = useQuery({
         
         queryKey: ['user', 'email'],
         queryFn: async () => {
@@ -64,7 +64,7 @@ const Login = () => {
             .then(data => {
                 const user = data.user;
                 setUserEmail(user.email)
-                if (user === {}) {
+                if (buyer === {}) {
                     saveUser(user.displayName, user.email, 'Buyer')
                 }
                 toast.success('User Login Successfully')
