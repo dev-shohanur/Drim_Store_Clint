@@ -7,10 +7,9 @@ import useBuyer from '../../Hooks/useBuyer';
 import { AuthContext } from '../../Context/AuthProvider';
 
 const ProductCard = ({ product, setBooking }) => {
+    
     const { user } = useContext(AuthContext)
     const [isBuyer] = useBuyer(user?.email);
-
-
 
     const {
         _id,
