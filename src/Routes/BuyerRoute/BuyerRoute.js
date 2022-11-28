@@ -9,9 +9,13 @@ const BuyerRoute = ({ children }) => {
     const { user, loading } = useContext(AuthContext);
     const [isBuyer, isBuyerLoading] = useBuyer(user?.email);
     const location = useLocation();
+
+
     if (loading || isBuyerLoading) {
         return <Loading></Loading>;
     }
+
+    
     if (user && isBuyer) {
         return children;
     }
