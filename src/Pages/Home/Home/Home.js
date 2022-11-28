@@ -7,10 +7,12 @@ import Category from '../Category/Category';
 const Home = () => {
     return (
         <div>
+
             <Banner></Banner>
             <Category></Category>
             <Advertise></Advertise>
             <AboutUs></AboutUs>
+            
         </div>
     );
 };
