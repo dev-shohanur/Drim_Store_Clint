@@ -78,6 +78,8 @@ const AdvertiseProductCard = ({ product, setBooking }) => {
                         <label onClick={() => setBooking(product)} htmlFor="booking-modal" className="btn btn-primary hover:btn-secondary">Book Now</label>
                     }
                 </div>
+
+                
                 {isBuyer && product?.productReport ?
                     <button onClick={() => handleProductReportToAdmin(_id)}
                         className='btn btn-secondary'>
