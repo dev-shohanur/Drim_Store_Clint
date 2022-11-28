@@ -2,8 +2,8 @@
 
 Live Website link: https://drim-store.web.app/ <br>
 
-Admin Email: admin@drimestore.com <br>
-Admin Password: 052020@Sr<br>
+adminEmail: admin@drimestore.com <br>
+adminPassword: 052020@Sr<br>
 
 Hear are some of the  Feature of This Website<br/>
 
