@@ -19,8 +19,7 @@ const Advertise = () => {
 
     return (
         <section>
-            {
-                products.length > 0 &&
+            {products.length > 0 &&
 
 
                 <div className="">
