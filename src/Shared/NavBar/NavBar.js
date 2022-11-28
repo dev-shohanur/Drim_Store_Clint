@@ -18,11 +18,11 @@ const NavBar = () => {
                 <li>
                     <button onClick={handleLogOut}
                         className='btn btn-secondary btn-xl rounded-full'
-                    >LogOut</button>
+                    >Log Out</button>
                 </li>
             </>
             :
-            <li><Link to='/login'>Login</Link></li>
+            <li><Link to='/login'>Log In</Link></li>
         }
     </React.Fragment>
     return (
