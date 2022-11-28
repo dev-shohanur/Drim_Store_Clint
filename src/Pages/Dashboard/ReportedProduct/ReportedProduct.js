@@ -4,7 +4,7 @@ import toast from 'react-hot-toast';
 import { FaBeer, FaCheckCircle } from 'react-icons/fa';
 
 
-const ReportedProduct = ({ product }) => {
+const ReportedProduct = ({ product, refetch }) => {
     const {
         _id,
         productImg,
@@ -24,23 +24,18 @@ const ReportedProduct = ({ product }) => {
 
 
     console.log(email);
-    const { data: user = {}, refetch } = useQuery({
+    const { data: user = {}} = useQuery({
         queryKey: ['user'],
         queryFn: async () => {
 
-            const res = await fetch(`http://localhost:5000/user?email=${email}`);
+            const res = await fetch(`https://drim-store-server-dvsrshohan.vercel.app/user?email=${email}`);
             const data = await res.json();
             return data;
         }
     })
-    if (!user === {}) {
-        console.log(user?.name);
-    } else (
-        refetch()
-    )
 
     const handleDeleteProduct = id => {
-        fetch(`http://localhost:5000/product/${id}`, {
+        fetch(`https://drim-store-server-dvsrshohan.vercel.app/product/${id}`, {
             method: 'DELETE'
         })
             .then(res => res.json())
@@ -60,8 +55,8 @@ const ReportedProduct = ({ product }) => {
             <figure><img className='w-3/4 m-2' src={productImg} alt="Shoes" /></figure>
             <div className="card-body">
                 <h2 className="card-title">{productName}</h2>
-                <p>Original Price : ৳ {originalPrice}</p>
-                <p>Resale Price : ৳ {productPrice}</p>
+                <p>Original Price : $ {originalPrice}</p>
+                <p>Resale Price : $ {productPrice}</p>
                 <p>Year of purchase : {yearOfPurchase}</p>
                 <p>Post Date : {date}</p>
                 <p>Mobil Number : {mobilNumber}</p>
@@ -75,7 +70,7 @@ const ReportedProduct = ({ product }) => {
                         {user?.status === "verify" && <FaCheckCircle className='text-blue-600 ml-2' />}
                     </h2>
                     <button
-                        onClick={() => handleDeleteProduct(product?._id)}
+                        onClick={() => handleDeleteProduct(_id)}
                         className='btn btn-secondary'
                     >delete
                     </button>

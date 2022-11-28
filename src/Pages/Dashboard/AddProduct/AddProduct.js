@@ -17,7 +17,7 @@ const AddProduct = () => {
         queryKey: ['categoryTitle'],
         queryFn: async () => {
 
-            const res = await fetch('http://localhost:5000/categoryTitles');
+            const res = await fetch('https://drim-store-server-dvsrshohan.vercel.app/categoryTitles');
             const data = await res.json();
             return data;
         }
@@ -94,7 +94,7 @@ const AddProduct = () => {
             email,
             soldStatus: 'unsold'
         };
-        fetch('http://localhost:5000/dashboard/addproduct', {
+        fetch('https://drim-store-server-dvsrshohan.vercel.app/dashboard/addproduct', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

@@ -6,14 +6,14 @@ const AllSeller = () => {
     const { data: sellers = [], refetch } = useQuery({
         queryKey: ['dashboard'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/dashboard/Seller');
+            const res = await fetch('https://drim-store-server-dvsrshohan.vercel.app/dashboard/Seller');
             const data = await res.json();
             return data;
         }
     })
 
     const handleDeleteSeller = id => {
-        fetch(`http://localhost:5000/dashboard/seller/${id}`, {
+        fetch(`https://drim-store-server-dvsrshohan.vercel.app/dashboard/seller/${id}`, {
             method: 'DELETE',
             // headers: {
             //     authorization: `bearer ${localStorage.getItem('accessToken')}`
@@ -31,7 +31,7 @@ const AllSeller = () => {
             })
     }
     const handleVerifySeller = id => {
-        fetch(`http://localhost:5000/dashboard/seller/${id}`, {
+        fetch(`https://drim-store-server-dvsrshohan.vercel.app/dashboard/seller/${id}`, {
             method: 'PUT',
             // headers: {
             //     authorization: `bearer ${localStorage.getItem('accessToken')}`
@@ -40,7 +40,6 @@ const AllSeller = () => {
             .then(res => res.json())
             .then(data => {
                 console.log(data)
-
                 if (data.modifiedCount > 0) {
                     toast.success('Seller Verify Successful.')
                     refetch()

@@ -8,7 +8,7 @@ const ReportedProducts = () => {
         queryKey: ['product'],
         queryFn: async () => {
 
-            const res = await fetch(`http://localhost:5000/report/product`);
+            const res = await fetch(`https://drim-store-server-dvsrshohan.vercel.app/report/product`);
             const data = await res.json();
             return data;
         }

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import toast from "react-hot-toast";
+import { Navigate, useNavigate } from "react-router-dom";
 
 const CheckOutForm = ({ booking }) => {
     console.log(booking);
@@ -16,8 +17,12 @@ const CheckOutForm = ({ booking }) => {
     const stripe = useStripe()
     const elements = useElements()
 
+
+    const navigate = useNavigate();
+
+
     useEffect(() => {
-        fetch('http://localhost:5000/create-payment-intent', {
+        fetch('https://drim-store-server-dvsrshohan.vercel.app/create-payment-intent', {
             method: "POST",
             headers: {
                 'content-type': 'application/json',
@@ -91,7 +96,7 @@ const handleSubmit = async (event) => {
         }
 
 
-        fetch('http://localhost:5000/payment', {
+        fetch('https://drim-store-server-dvsrshohan.vercel.app/payment', {
             method: "POST",
             headers: {
                 'content-type': 'application/json',
@@ -106,6 +111,7 @@ const handleSubmit = async (event) => {
 
                     handleSoldStatus(productId)
                     setSuccess('Congratulations dear you payment successfully')
+                    toast.success('Congratulations dear you payment successfully')
                     setTranjactionid(paymentIntent.id)
 
                 }
@@ -118,7 +124,7 @@ const handleSubmit = async (event) => {
 }
 
 const handleSoldStatus = id => {
-    fetch(`http://localhost:5000/productSoldStatus/${id}`, {
+    fetch(`https://drim-store-server-dvsrshohan.vercel.app/productSoldStatus/${id}`, {
         method: 'PUT'
         })
             .then(res => res.json())
@@ -128,6 +134,7 @@ const handleSoldStatus = id => {
         if (data.modifiedCount > 0) {
             toast.success('Product Sold Successful.')
         }
+        navigate('/dashboard/my-orders')
 
     })
     }

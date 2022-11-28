@@ -33,7 +33,7 @@ const BookingModal = ({ booking, setBooking }) => {
         }
         console.log(booking)
 
-        fetch('http://localhost:5000/booking', {
+        fetch('https://drim-store-server-dvsrshohan.vercel.app/booking', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -47,7 +47,7 @@ const BookingModal = ({ booking, setBooking }) => {
                     setBooking(null)
 
                     toast.success('congratulations you are successfully booking ')
-                    // navigate('/dashboard/myorders')
+                    navigate('/dashboard/my-product')
 
                     // handleSoldStatus(_id)
 
@@ -65,7 +65,7 @@ const BookingModal = ({ booking, setBooking }) => {
 
 
     const handleSoldStatus = id => {
-        fetch(`http://localhost:5000/product/${id}`, {
+        fetch(`https://drim-store-server-dvsrshohan.vercel.app/product/${id}`, {
             method: 'PUT'
         })
             .then(res => res.json())

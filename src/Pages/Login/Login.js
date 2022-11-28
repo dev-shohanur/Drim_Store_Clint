@@ -1,3 +1,4 @@
+import { useQuery } from '@tanstack/react-query';
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
@@ -7,10 +8,11 @@ import useBuyer from '../../Hooks/useBuyer';
 import useToken from '../../Hooks/useToken';
 
 const Login = () => {
-    const { user,signIn, sinUpWithGoogle } = useContext(AuthContext);
+    const {signIn, sinUpWithGoogle } = useContext(AuthContext);
     const [loginError, setLoginError] = useState('');
     const [loginUserEmail, setLoginUserEmail] = useState('')
-    const [isBuyer] = useBuyer(user?.email);
+    const [userEmail,setUserEmail] = useState('')
+    // const [isBuyer] = useBuyer(user?.email);
 
     const [token] = useToken(loginUserEmail)
 
@@ -40,12 +42,28 @@ const Login = () => {
             })
     }
 
+    const { data: user = {}, refetch } = useQuery({
+        queryKey: ['user', 'email'],
+        queryFn: async () => {
+
+            const res = await fetch(`https://drim-store-server-dvsrshohan.vercel.app/user?email=${userEmail}`);
+            const data = await res.json();
+            return data;
+        }
+    })
+    // if (!user === {}) {
+    //     console.log(user?.name);
+    // } else (
+    //     refetch()
+    // )
+
     const handleSignUpWidthGoogle = () => {
         sinUpWithGoogle()
             .then(res => res)
             .then(data => {
                 const user = data.user;
-                if (!isBuyer) {
+                setUserEmail(user.email)
+                if (user === {}) {
                     saveUser(user.displayName, user.email, 'Buyer')
                 }
                 toast.success('User Login Successfully')
@@ -54,7 +72,7 @@ const Login = () => {
     }
     const saveUser = (name, email, role) => {
         const user = { name, email, role };
-        fetch('http://localhost:5000/users', {
+        fetch('https://drim-store-server-dvsrshohan.vercel.app/users', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

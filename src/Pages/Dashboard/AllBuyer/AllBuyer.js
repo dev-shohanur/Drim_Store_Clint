@@ -6,14 +6,14 @@ const AllBuyer = () => {
     const { data: buyers = [], refetch } = useQuery({
         queryKey: ['dashboard'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/dashboard/Buyer');
+            const res = await fetch('https://drim-store-server-dvsrshohan.vercel.app/dashboard/Buyer');
             const data = await res.json();
             return data;
         }
     })
 
     const handleDeleteBuyer = id => {
-        fetch(`http://localhost:5000/dashboard/buyer/${id}`, {
+        fetch(`https://drim-store-server-dvsrshohan.vercel.app/dashboard/buyer/${id}`, {
             method: 'DELETE',
             // headers: {
             //     authorization: `bearer ${localStorage.getItem('accessToken')}`
@@ -24,7 +24,7 @@ const AllBuyer = () => {
                 console.log(data)
 
                 if (data.deletedCount > 0) {
-                    toast.success('Seller Verify Successful.')
+                    toast.success('Buyer Delete Successful.')
                     refetch()
                 }
 

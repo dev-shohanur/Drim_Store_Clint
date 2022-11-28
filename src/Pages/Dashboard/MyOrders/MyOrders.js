@@ -8,7 +8,7 @@ const MyOrders = () => {
     const { data: MyOrders = [], refetch } = useQuery({
         queryKey: ['dashboard'],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/bookings?email=${user?.email}`);
+            const res = await fetch(`https://drim-store-server-dvsrshohan.vercel.app/bookings?email=${user?.email}`);
             const data = await res.json();
             return data;
         }
@@ -35,7 +35,7 @@ const MyOrders = () => {
                                     <img className='w-1/4' src={product?.productImg} alt="" srcset="" />
                                 </td>
                                 <td>{product?.productName}</td>
-                                <td>৳ {product?.productPrice}</td>
+                                <td>$ {product?.productPrice}</td>
                                 <td>{product?.soldStatus}</td>
                                 <td>
                                     {product.productPrice && !product.paid && 

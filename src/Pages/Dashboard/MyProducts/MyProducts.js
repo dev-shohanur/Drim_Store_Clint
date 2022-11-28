@@ -9,14 +9,14 @@ const MyProducts = () => {
     const { data: myProducts = [], refetch } = useQuery({
         queryKey: ['dashboard'],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/dashboard/product/${user?.email}`);
+            const res = await fetch(`https://drim-store-server-dvsrshohan.vercel.app/dashboard/product/${user?.email}`);
             const data = await res.json();
             return data;
         }
     })
 
     const handleDeleteProduct = id => {
-        fetch(`http://localhost:5000/product/${id}`, {
+        fetch(`https://drim-store-server-dvsrshohan.vercel.app/product/${id}`, {
             method: 'DELETE'
         })
             .then(res => res.json())
@@ -31,7 +31,7 @@ const MyProducts = () => {
             })
     }
     const handleAdvertiseProduct = id => {
-        fetch(`http://localhost:5000/product/${id}`, {
+        fetch(`https://drim-store-server-dvsrshohan.vercel.app/product/${id}`, {
             method: 'PUT'
         })
             .then(res => res.json())
@@ -68,7 +68,7 @@ const MyProducts = () => {
                                     <img className='w-1/4' src={product?.productImg} alt="" srcset="" />
                                 </td>
                                 <td>{product?.productName}</td>
-                                <td>৳ {product?.productPrice}</td>
+                                <td>$ {product?.productPrice}</td>
                                 <td>{product?.soldStatus}</td>
                                 <td>
                                     {product?.soldStatus === 'unsold' &&

@@ -17,7 +17,7 @@ const CategoryProducts = () => {
     const { data: products = [], refetch } = useQuery({
         queryKey: ['category'],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/category/${params.id}`);
+            const res = await fetch(`https://drim-store-server-dvsrshohan.vercel.app/category/${params.id}`);
             const data = await res.json();
             return data;
         }
@@ -25,7 +25,7 @@ const CategoryProducts = () => {
     const { data: user = {} } = useQuery({
         queryKey: ['user'],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/user?email=$${sellerEmail}`);
+            const res = await fetch(`https://drim-store-server-dvsrshohan.vercel.app/user?email=$${sellerEmail}`);
             const data = await res.json();
             return data;
         }
